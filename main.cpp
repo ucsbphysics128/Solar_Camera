@@ -18,7 +18,7 @@ using namespace std;
 unsigned char* Image;
 
 void FrameCallBack(TProcessedDataProperty* Attributes, unsigned char* BytePtr){
-for(int i;i<10;i++){
+for(unsigned int i=0;i<10;i++){
 cout << "works" << endl;
 		char buffer[512];
 		string time = get_date();
