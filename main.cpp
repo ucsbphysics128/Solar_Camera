@@ -18,11 +18,12 @@ using namespace std;
 unsigned char* Image;
 
 void FrameCallBack(TProcessedDataProperty* Attributes, unsigned char* BytePtr){
+for(int i;i<10;i++){
 cout << "works" << endl;
 		char buffer[512];
 		string time = get_date();
 		int d = 5;
-		sprintf(buffer,"yayta_%s.raw",time);
+		sprintf(buffer,"yayta_%d.raw",i);
 
 		FILE* file = fopen(buffer, "wb");
 		if ( file == NULL )
@@ -36,6 +37,8 @@ cout << "works" << endl;
 
 			fclose(file);
 		}
+cin >> d;
+}
 
 }
 
@@ -79,7 +82,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	cin >> ent;
 	return 0;
 	}
-/*
 	ret = BUFCCDUSB_InstallUSBDeviceHooker(CameraFaultCallBack);
 	if(ret == 1){cout << "success installUSBDeviceHooker: " << ret << endl;
 	}else{
@@ -88,7 +90,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 	}
 cin >> ret;
-*/
 
 	ret = BUFCCDUSB_SetCustomizedResolution( 1,1280, 960,0,1);
 
@@ -99,7 +100,7 @@ cin >> ret;
 	cin >> ent;
 	return 0;
 	}
-	ret = BUFCCDUSB_StartFrameGrab(5);
+	ret = BUFCCDUSB_StartFrameGrab(GRAB_FRAME_FOREVER);
 //cin >> ret;
 	ret = BUFCCDUSB_InstallFrameHooker(0, FrameCallBack);
 cin >> ret;
